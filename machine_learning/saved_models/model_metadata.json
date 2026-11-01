@@ -1,0 +1,248 @@
+{
+  "system_title": "Medi Bridge AI Machine Learning Models",
+  "generated_at": "2026-10-30T08:50:24.698512",
+  "conditions": {
+    "diabetes": {
+      "condition_key": "diabetes",
+      "condition_title": "Type-2 Diabetes Mellitus Risk",
+      "dataset_citation": "Pima Indians Diabetes / National Health and Nutrition Examination Survey (NHANES) Benchmark",
+      "algorithm": "Random Forest Classifier (Ensemble of 100 Trees with Scaler)",
+      "trained_at": "2026-10-30T08:50:23.519569",
+      "feature_columns": [
+        "glucose",
+        "bmi",
+        "age",
+        "systolic_bp",
+        "insulin",
+        "hba1c"
+      ],
+      "metrics": {
+        "accuracy": 0.9542,
+        "precision": 0.9726,
+        "recall": 0.953,
+        "f1_score": 0.9627,
+        "roc_auc": 0.9917,
+        "confusion_matrix": [
+          [
+            87,
+            4
+          ],
+          [
+            7,
+            142
+          ]
+        ]
+      },
+      "top_features": [
+        [
+          "glucose",
+          0.4269
+        ],
+        [
+          "hba1c",
+          0.3535
+        ],
+        [
+          "insulin",
+          0.059
+        ],
+        [
+          "bmi",
+          0.0581
+        ],
+        [
+          "systolic_bp",
+          0.0533
+        ],
+        [
+          "age",
+          0.0491
+        ]
+      ]
+    },
+    "ckd": {
+      "condition_key": "ckd",
+      "condition_title": "Chronic Kidney Disease (CKD) Progression",
+      "dataset_citation": "UCI Machine Learning Repository Chronic Kidney Disease (CKD) Clinical Benchmark",
+      "algorithm": "Random Forest Classifier (Ensemble of 100 Trees with Scaler)",
+      "trained_at": "2026-10-30T08:50:23.924976",
+      "feature_columns": [
+        "serum_creatinine",
+        "blood_urea",
+        "egfr",
+        "hemoglobin",
+        "albumin",
+        "systolic_bp",
+        "age"
+      ],
+      "metrics": {
+        "accuracy": 0.9708,
+        "precision": 0.9444,
+        "recall": 0.9577,
+        "f1_score": 0.951,
+        "roc_auc": 0.9984,
+        "confusion_matrix": [
+          [
+            165,
+            4
+          ],
+          [
+            3,
+            68
+          ]
+        ]
+      },
+      "top_features": [
+        [
+          "egfr",
+          0.3474
+        ],
+        [
+          "serum_creatinine",
+          0.3359
+        ],
+        [
+          "blood_urea",
+          0.2292
+        ],
+        [
+          "hemoglobin",
+          0.0492
+        ],
+        [
+          "albumin",
+          0.0182
+        ],
+        [
+          "systolic_bp",
+          0.0101
+        ],
+        [
+          "age",
+          0.0101
+        ]
+      ]
+    },
+    "hypertension": {
+      "condition_key": "hypertension",
+      "condition_title": "Hypertension Stage Assessment",
+      "dataset_citation": "American Heart Association (AHA) / Framingham Heart Study Blood Pressure Classification",
+      "algorithm": "Random Forest Classifier (Ensemble of 100 Trees with Scaler)",
+      "trained_at": "2026-10-30T08:50:24.318205",
+      "feature_columns": [
+        "systolic_bp",
+        "diastolic_bp",
+        "age",
+        "bmi",
+        "heart_rate",
+        "blood_glucose"
+      ],
+      "metrics": {
+        "accuracy": 0.95,
+        "precision": 0.9789,
+        "recall": 0.9588,
+        "f1_score": 0.9688,
+        "roc_auc": 0.9925,
+        "confusion_matrix": [
+          [
+            42,
+            4
+          ],
+          [
+            8,
+            186
+          ]
+        ]
+      },
+      "top_features": [
+        [
+          "systolic_bp",
+          0.436
+        ],
+        [
+          "diastolic_bp",
+          0.2773
+        ],
+        [
+          "age",
+          0.2008
+        ],
+        [
+          "bmi",
+          0.0437
+        ],
+        [
+          "heart_rate",
+          0.0227
+        ],
+        [
+          "blood_glucose",
+          0.0195
+        ]
+      ]
+    },
+    "cardiovascular": {
+      "condition_key": "cardiovascular",
+      "condition_title": "Cardiovascular Disease (CVD) Risk",
+      "dataset_citation": "Cleveland Heart Disease Dataset / UCI Machine Learning Repository",
+      "algorithm": "Random Forest Classifier (Ensemble of 100 Trees with Scaler)",
+      "trained_at": "2026-10-30T08:50:24.698288",
+      "feature_columns": [
+        "age",
+        "systolic_bp",
+        "total_cholesterol",
+        "heart_rate",
+        "blood_glucose",
+        "bmi",
+        "exercise_induced_angina"
+      ],
+      "metrics": {
+        "accuracy": 0.9417,
+        "precision": 0.8816,
+        "recall": 0.9306,
+        "f1_score": 0.9054,
+        "roc_auc": 0.9907,
+        "confusion_matrix": [
+          [
+            159,
+            9
+          ],
+          [
+            5,
+            67
+          ]
+        ]
+      },
+      "top_features": [
+        [
+          "age",
+          0.3181
+        ],
+        [
+          "exercise_induced_angina",
+          0.2681
+        ],
+        [
+          "total_cholesterol",
+          0.1684
+        ],
+        [
+          "systolic_bp",
+          0.1133
+        ],
+        [
+          "blood_glucose",
+          0.0548
+        ],
+        [
+          "bmi",
+          0.0545
+        ],
+        [
+          "heart_rate",
+          0.0228
+        ]
+      ]
+    }
+  }
+}

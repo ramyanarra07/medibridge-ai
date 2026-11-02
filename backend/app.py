@@ -1,6 +1,6 @@
 import os
 import sys
-from flask import Flask, jsonify, send_from_directory
+from flask import Flask, jsonify, send_from_directory, request
 from flask_cors import CORS
 
 # Add root directory to sys.path
@@ -20,7 +20,8 @@ from backend.routes.alert_routes import alert_bp
 from backend.routes.prediction_routes import prediction_bp
 
 def create_app(config_class=Config):
-    app = Flask(__name__, static_folder="../frontend/dist", static_url_path="")
+    frontend_dist = os.path.abspath(os.path.join(PROJECT_ROOT, "frontend", "dist"))
+    app = Flask(__name__, static_folder=None)
     app.config.from_object(config_class)
 
     # Enable Cross-Origin Resource Sharing (CORS)
@@ -46,20 +47,34 @@ def create_app(config_class=Config):
             'academic_edition': True
         })
 
-    # Serve built React frontend if distribution exists
+    # Serve built React frontend or static assets
     @app.route('/', defaults={'path': ''})
     @app.route('/<path:path>')
     def serve_frontend(path):
-        if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
-            return send_from_directory(app.static_folder, path)
-        elif os.path.exists(os.path.join(app.static_folder, 'index.html')):
-            return send_from_directory(app.static_folder, 'index.html')
+        if path.startswith('api/'):
+            return jsonify({'error': f"API endpoint '/{path}' not found"}), 404
+
+        target = os.path.join(frontend_dist, path)
+        if path != "" and os.path.exists(target) and os.path.isfile(target):
+            return send_from_directory(frontend_dist, path)
+        elif os.path.exists(os.path.join(frontend_dist, 'index.html')):
+            return send_from_directory(frontend_dist, 'index.html')
         else:
             return jsonify({
                 'system': 'Medi Bridge AI Backend API is online.',
                 'frontend_status': 'Development Mode. Connect via React dev server on port 5173.',
                 'documentation': '/api/health'
             })
+
+    # Catch-all 404 handler for SPA routes and API fallback
+    @app.errorhandler(404)
+    def handle_not_found(e):
+        if request.path.startswith('/api/'):
+            return jsonify({'error': 'API endpoint not found', 'path': request.path}), 404
+        index_file = os.path.join(frontend_dist, 'index.html')
+        if os.path.exists(index_file):
+            return send_from_directory(frontend_dist, 'index.html')
+        return jsonify({'error': 'Page not found'}), 404
 
     # Auto-seed database if empty
     with app.app_context():
